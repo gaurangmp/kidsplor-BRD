@@ -683,22 +683,23 @@ Message
 
 ## 15. Glossary
 
-| Term | Definition |
-|---|---|
-| Provider | A business or individual offering kids' activities on KidStreet |
-| Parent | The adult user on the parent-facing portal who books activities for their child |
-| Class | A recurring or one-off activity offered by a provider |
-| Session | A single occurrence of a Class (e.g. one Saturday morning session) |
-| Enrollment | A confirmed booking linking a Child to a Class |
-| Waitlist | A queue of parents wishing to enroll when a class is full |
-| Stripe Connect | Stripe's product for marketplace/platform payment routing |
-| Platform Fee | KidStreet's charge per transaction (1.4% + $0.30, Starter Plan) |
-| Coach | A person assigned to deliver a class on behalf of a provider |
-| Enquiry | A pre-booking message from a parent expressing interest in a class |
-| Listing | A provider's public profile and class catalogue on the parent-facing portal |
-| ABN | Australian Business Number — required for all provider accounts |
-| WWCC | Working with Children Check — required documentation for providers |
-| Donate Classes | Provider can choose to donate classes to the community |
+| # | Term | Definition |
+|---|---|---|
+| 01 | Provider | A business or individual offering kids' activities on KidStreet |
+| 02 | Parent | The adult user on the parent-facing portal who books activities for their child |
+| 03 | Class | A recurring or one-off activity offered by a provider |
+| 04 | Session | A single occurrence of a Class (e.g. one Saturday morning session) |
+| 05 | Enrollment | A confirmed booking linking a Child to a Class |
+| 06 | Waitlist | A queue of parents wishing to enroll when a class is full |
+| 07 | Stripe Connect | Stripe's product for marketplace/platform payment routing |
+| 08 | Platform Fee | KidStreet's charge per transaction (1.4% + $0.30, Starter Plan) |
+| 09 | Coach | A person assigned to deliver a class on behalf of a provider |
+| 10 | Enquiry | A pre-booking message from a parent expressing interest in a class |
+| 11 | Listing | A provider's public profile and class catalogue on the parent-facing portal |
+| 12 | ABN | Australian Business Number — required for all provider accounts |
+| 13 | WWCC | Working with Children Check — required documentation for providers |
+| 14 | Donate Classes | Provider can choose to donate classes to the community |
+
 ---
 
 *End of Document — KidStreet Provider Portal BRD v1.0*
