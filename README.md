@@ -425,10 +425,12 @@ From the chat header, provider can:
 This section describes what the Provider Portal publishes to the parent-facing side. The parent portal UI itself is a separate specification document.
 
 #### FR-10.1 — Published Data Per Class
+
 | Field | Source |
 |---|---|
 | Class name | Provider input |
 | Activity category | Provider input |
+| Activity category type | Provider input |
 | Age group | Provider input |
 | Schedule (days/times/dates) | Provider input |
 | Venue name + address | Provider input |
@@ -528,12 +530,11 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 ---
 
-## 8.1. Activity Attributes (Phase 1)
+## 8.1. Activity Category Type (Phase 1)
 
-| Attribute               | (examples)                       |
+| Activity Category Type  | (examples)                       |
 |-------------------------|----------------------------------|
-| Donated                 |                                  |
-| Paid /Trial /Free       |                                  |
+| Donated /Paid /Trial /Free |                               |
 | Neuro-Diversity Support | Autism Friendly,Sensory Friendly |
 | Online/Offline          | Delivery Method                  |
 | Accessiblity            | Wheelchair, Hearing Loop         |
@@ -613,7 +614,8 @@ Class
  └── has many: Sessions (individual occurrences)
  └── has many: Enrollments
  └── has one: WaitlistQueue
-
+ └── has many: Attributes
+ 
 Session
  └── belongs to: Class
  └── has many: AttendanceRecords
