@@ -70,7 +70,7 @@ Provider Portal (Web App)
 └── Analytics and Reporting
 ```
 
-The Provider Portal is a **responsive web application** (both desktop mobile-responsive). The parent-facing portal (separate scope) reads class data published by providers and exposes it as a public-facing class availability view.
+The Provider Portal is a **responsive web application** (both desktop & mobile-responsive). The parent-facing portal (View - prototype) reads class data published by providers and exposes it as a public-facing class availability view.
 
 ---
 
@@ -450,17 +450,17 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 ## 5. Non-Functional Requirements
 
-| Ref    | Requirement | Target |
-|--------|---|---|
-| NFR-01 | Onboarding completion time | ≤ 10 minutes for a new provider with no prior data |
-| NFR-02 | Page load time | < 2s for dashboard and schedule pages (p95) |
-| NFR-03 | Uptime | 99.5% monthly uptime SLA |
-| NFR-04 | Responsive design | Fully usable on desktop (primary), tablet (secondary) |
-| NFR-05 | Browser support | Chrome, Firefox, Safari, Edge (latest 2 versions) |
-| NFR-06 | Data security | All PII encrypted at rest (AES-256) and in transit (TLS 1.2+) |
-| NFR-07 | Payment security | PCI-DSS compliant via Stripe; no raw card data handled by KidStreet |
-| NFR-08 | GDPR / Privacy Act compliance | Australian Privacy Act 1988 compliant; privacy policy required |
-| NFR-09 | Email deliverability | Transactional emails via SendGrid or equivalent with DKIM/SPF |
+| Ref    | Requirement                   | Target                                                              |
+|--------|-------------------------------|---------------------------------------------------------------------|
+| NFR-01 | Onboarding completion time    | ≤ 10 minutes for a new provider with no prior data                  |
+| NFR-02 | Page load time                | < 2s for dashboard and schedule pages (p95)                         |
+| NFR-03 | Uptime                        | 99.5% monthly uptime SLA                                            |
+| NFR-04 | Responsive design             | Fully usable on desktop (primary), tablet (secondary)               |
+| NFR-05 | Browser support               | Chrome, Firefox, Safari, Edge (latest 2 versions)                   |
+| NFR-06 | Data security                 | All PII encrypted at rest (AES-256) and in transit (TLS 1.2+)       |
+| NFR-07 | Payment security              | PCI-DSS compliant via Stripe; no raw card data handled by KidStreet |
+| NFR-08 | GDPR / Privacy Act compliance | Australian Privacy Act 1988 compliant; privacy policy required      |
+| NFR-09 | Email deliverability          | Transactional emails via SendGrid or equivalent with DKIM/SPF       |
 
 ---
 
@@ -683,22 +683,22 @@ Message
 
 ## 15. Glossary
 
-| Term           | Definition|
-|----|------|
-| Provider       | A business or individual offering kids' activities on KidStreet            |
+| Term           | Definition                                                                      |
+|----------------|---------------------------------------------------------------------------------|
+| Provider       | A business or individual offering kids' activities on KidStreet                 |
 | Parent         | The adult user on the parent-facing portal who books activities for their child |
-| Class          | A recurring or one-off activity offered by a provider                      |
-| Session        | A single occurrence of a Class (e.g. one Saturday morning session)         |
-| Enrollment     | A confirmed booking linking a Child to a Class                             |
-| Waitlist       | A queue of parents wishing to enroll when a class is full                  |
-| Stripe Connect | Stripe's product for marketplace/platform payment routing                  |
-| Platform Fee   | KidStreet's charge per transaction (1.4% + $0.30, Starter Plan)            |
-| Coach          | A person assigned to deliver a class on behalf of a provider               |
-| Enquiry        | A pre-booking message from a parent expressing interest in a class         |
-| Listing        | A provider's public profile and class catalogue on the parent-facing portal |
-| ABN            | Australian Business Number — required for all provider accounts            |
-| WWCC           | Working with Children Check — required documentation for providers         |
-| Donate Classes | Provider can choose to donate classes to the community                     |
+| Class          | A recurring or one-off activity offered by a provider                           |
+| Session        | A single occurrence of a Class (e.g. one Saturday morning session)              |
+| Enrollment     | A confirmed booking linking a Child to a Class                                  |
+| Waitlist       | A queue of parents wishing to enroll when a class is full                       |
+| Stripe Connect | Stripe's product for marketplace/platform payment routing                       |
+| Platform Fee   | KidStreet's charge per transaction (1.4% + $0.30, Starter Plan)                 |
+| Coach          | A person assigned to deliver a class on behalf of a provider                    |
+| Enquiry        | A pre-booking message from a parent expressing interest in a class              |
+| Listing        | A provider's public profile and class catalogue on the parent-facing portal     |
+| ABN            | Australian Business Number — required for all provider accounts                 |
+| WWCC           | Working with Children Check — required documentation for providers              |
+| Donate Classes | Provider can choose to donate classes to the community                          |
 ---
 
 *End of Document — KidStreet Provider Portal BRD v1.0*
