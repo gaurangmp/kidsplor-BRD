@@ -16,9 +16,9 @@
 | Target Release | TBC |
 
 ---
-## (#executive-summary)
 
-## 1. [Executive Summary](#executive-summary)
+
+## 1. Executive Summary
 
 KidStreet (brand TBA) is a two-sided marketplace connecting parents with local kids' activity providers — sports academies, dance studios, music schools, arts workshops, tutoring centres, and more. This document defines Phase 1 requirements for the **Provider Portal**, the web application through which businesses create an account, set up their offering, manage classes, handle enrollments and payments, and communicate with parents.
 
@@ -40,7 +40,7 @@ KidStreet (brand TBA) is a two-sided marketplace connecting parents with local k
 
 ---
 
-## 2. [User Personas](#user-personas)
+## 2. User Personas
 
 ### 2.1 Provider — Micro Business (Primary)
 A sole trader or small team running a kids' activity (e.g. a soccer coach, a dance teacher). Often not highly technical. Wants to spend minimal time on admin. Likely using a mix of spreadsheets, group texts and Facebook for current bookings.
@@ -450,8 +450,8 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 ## 5. Non-Functional Requirements
 
-| Ref | Requirement | Target |
-|---|---|---|
+| Ref    | Requirement | Target |
+|--------|---|---|
 | NFR-01 | Onboarding completion time | ≤ 10 minutes for a new provider with no prior data |
 | NFR-02 | Page load time | < 2s for dashboard and schedule pages (p95) |
 | NFR-03 | Uptime | 99.5% monthly uptime SLA |
@@ -460,8 +460,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 | NFR-06 | Data security | All PII encrypted at rest (AES-256) and in transit (TLS 1.2+) |
 | NFR-07 | Payment security | PCI-DSS compliant via Stripe; no raw card data handled by KidStreet |
 | NFR-08 | GDPR / Privacy Act compliance | Australian Privacy Act 1988 compliant; privacy policy required |
-| NFR-09 | WCAG accessibility | WCAG 2.1 AA (at least for onboarding and key flows) |
-| NFR-10 | Email deliverability | Transactional emails via SendGrid or equivalent with DKIM/SPF |
+| NFR-09 | Email deliverability | Transactional emails via SendGrid or equivalent with DKIM/SPF |
 
 ---
 
@@ -632,7 +631,7 @@ Message
 ## 13. Acceptance Criteria — Critical Flows
 
 ### AC-01: Onboarding
-- [ ] A new provider can complete all 5 steps in < 5 minutes on a desktop browser.
+- [ ] A new provider can complete all steps in < 5 minutes on a desktop browser.
 - [ ] Stripe connection succeeds and returns the provider to the portal with a "Connected ✓" confirmation.
 - [ ] At least one class is visible on the parent-facing portal within 60 seconds of going live.
 - [ ] Provider receives a welcome email with their public profile URL.
@@ -674,8 +673,8 @@ Message
 
 ## 15. Glossary
 
-| Term           | Definition                                                                 |
-|----------------|----------------------------------------------------------------------------|
+| Term           | Definition|
+|----|------|
 | Provider       | A business or individual offering kids' activities on KidStreet            |
 | Parent         | The adult user on the parent-facing portal who books activities for their child |
 | Class          | A recurring or one-off activity offered by a provider                      |
