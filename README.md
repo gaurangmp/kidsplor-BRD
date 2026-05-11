@@ -683,7 +683,7 @@ Message
 
 ## 15. Glossary
 
-| Term           | Definition |
+| Term | Definition |
 |---|---|
 | Provider       | A business or individual offering kids' activities on KidStreet |
 | Parent         | The adult user on the parent-facing portal who books activities for their child |
