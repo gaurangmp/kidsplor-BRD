@@ -333,6 +333,7 @@ From the chat header, provider can:
 **Priority:** P0
 
 #### FR-07.1 — Profile Fields
+
 | Field | Required | Notes |
 |---|---|---|
 | Business name | Yes | |
