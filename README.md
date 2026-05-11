@@ -528,6 +528,16 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 ---
 
+## 8.1. Activity Attributes (Phase 1)
+
+| Attribute               | (examples)                       |
+|-------------------------|----------------------------------|
+| Donated                 |                                  |
+| Paid /Trial /Free       |                                  |
+| Neuro-Diversity Support | Autism Friendly,Sensory Friendly |
+| Online/Offline          | Delivery Method                  |
+| Accessiblity            | Wheelchair, Hearing Loop         |
+
 ## 9. User Stories — Priority Matrix
 
 | ID    | User Story                                                                 | Priority | Notes |
