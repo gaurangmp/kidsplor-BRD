@@ -16,27 +16,27 @@
 | Target Release | TBC |
 
 ---
-
-
-
+## (#executive-summary)
 
 ## 1. [Executive Summary](#executive-summary)
 
-KidStreet is a two-sided marketplace connecting parents with local kids' activity providers — sports academies, dance studios, music schools, arts workshops, tutoring centres, and more. This document defines Phase 1 requirements for the **Provider Portal**: the web application through which businesses create an account, set up their offering, manage classes, handle enrollments and payments, and communicate with parents.
+KidStreet (brand TBA) is a two-sided marketplace connecting parents with local kids' activity providers — sports academies, dance studios, music schools, arts workshops, tutoring centres, and more. This document defines Phase 1 requirements for the **Provider Portal**, the web application through which businesses create an account, set up their offering, manage classes, handle enrollments and payments, and communicate with parents.
 
 ### Design Principles
 
-- **10-minute onboarding** is a non-negotiable success criterion. A new provider must be able to go live — with at least one class published and payments enabled — within 10 minutes of starting the sign-up flow.
+- **5-minute onboarding** is a non-negotiable success criterion. A new provider must be able to go live — with at least one class published and payments enabled — within 5 minutes of starting the sign-up flow.
 - **Self-service first.** Providers should be able to do everything without contacting KidStreet support.
 - **AI-assisted.** An embedded AI assistant guides providers through onboarding and common tasks.
 - **Parent money flows directly to the provider** via Stripe Connect. KidStreet takes a platform fee per transaction.
 
 ### Out of Scope for Phase 1
 
-- Billing and invoicing module (Phase 2)
-- Franchise / multi-location enterprise accounts (Phase 2)
-- Provider mobile app (Phase 2)
-- Xero / MYOB accounting integrations (Phase 2)
+- Mobile App for iOS and Android
+- Billing and invoicing module (Enhanced)
+- Customer Engagement (Bulks SMS/Emails, Push Notifications in App)
+- Staff Management (Rostering)
+- Provider booking integrations (Roller, Omnify)
+- Reporting (Attendance etc.)
 
 ---
 
@@ -58,18 +58,19 @@ A staff member (e.g. receptionist or coordinator) who manages day-to-day operati
 ```
 Provider Portal (Web App)
 │
-├── Onboarding Wizard (5-step, < 10 min)
+├── Onboarding Wizard - Business Registration (5-step, < 5 min)
 ├── Dashboard
 ├── Class Schedule Manager
-├── Enrollments & Roster Manager
+├── Enrollments Manager
 ├── Payments Tracker
 ├── Inbox (Messaging)
 ├── Business Profile Editor
 ├── Coach Manager
 └── Stripe / Payments Setup
+└── Analytics and Reporting
 ```
 
-The Provider Portal is a **responsive web application** (desktop-first for Phase 1, mobile-responsive). The parent-facing portal (separate scope) reads class data published by providers and exposes it as a public-facing class availability view.
+The Provider Portal is a **responsive web application** (both desktop mobile-responsive). The parent-facing portal (separate scope) reads class data published by providers and exposes it as a public-facing class availability view.
 
 ---
 
@@ -81,11 +82,11 @@ The Provider Portal is a **responsive web application** (desktop-first for Phase
 
 **Priority:** P0 — Critical Path
 
-**Goal:** A new provider can go live with ≥1 published class and Stripe connected in ≤ 10 minutes.
+**Goal:** A new provider can go live with ≥1 published class and Stripe connected in ≤ 5 minutes.
 
 #### FR-01.1 — Account Creation
 - Provider registers with email + password, or via Google / Apple OAuth.
-- On first login, the 5-step onboarding wizard launches automatically.
+- On first login, an onboarding wizard launches automatically.
 - An elapsed time indicator ("You've been going 4 min 32 sec — almost there!") motivates completion.
 
 #### FR-01.2 — Step 1: Account
@@ -184,6 +185,7 @@ A modal or side panel with fields (same as FR-01.4). Additional fields available
 - Visibility: Public (parents can find and book) / Private (invite-only, not listed on parent portal) / Enquire Only (no online payment; parent submits enquiry).
 - Cancellation/rescheduling policy (free-text or template).
 - Internal notes (not visible to parents).
+- Donate class feature
 
 #### FR-03.4 — Recurring Class Management
 - Provider can edit a single session or all future sessions in a recurring series.
@@ -529,47 +531,45 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 ## 9. User Stories — Priority Matrix
 
-| ID | User Story | Priority | Notes |
-|---|---|---|---|
-| US-01 | As a provider, I can sign up and go live with a class in under 10 minutes | P0 | Core success metric |
-| US-02 | As a provider, I can create recurring weekly classes for a term | P0 | |
-| US-03 | As a provider, I can see a weekly calendar view of all my classes | P0 | |
-| US-04 | As a provider, I can view which kids are enrolled in each class | P0 | |
-| US-05 | As a provider, I can see which enrollments are paid and which are not | P0 | |
-| US-06 | As a provider, I can send a payment reminder to an unpaid family | P0 | |
-| US-07 | As a provider, I can receive and reply to messages from parents | P0 | |
-| US-08 | As a provider, I can have parent messages forwarded to my email | P0 | |
-| US-09 | As a provider, I can connect my bank account via Stripe | P0 | |
-| US-10 | As a provider, I can view revenue and payout summaries | P0 | |
+| ID    | User Story                                                                 | Priority | Notes |
+|-------|----------------------------------------------------------------------------|---|---|
+| US-01 | As a provider, I can sign up and go live with a class in under 5 minutes   | P0 | Core success metric |
+| US-02 | As a provider, I can create recurring weekly classes for a term            | P0 | |
+| US-03 | As a provider, I can see a weekly calendar view of all my classes          | P0 | |
+| US-04 | As a provider, I can view which kids are enrolled in each class            | P0 | |
+| US-05 | As a provider, I can see which enrollments are paid and which are not      | P0 | |
+| US-06 | As a provider, I can send a payment reminder to an unpaid family           | P0 | |
+| US-07 | As a provider, I can receive and reply to messages from parents            | P0 | |
+| US-08 | As a provider, I can have parent messages forwarded to my email            | P0 | |
+| US-09 | As a provider, I can connect my bank account via Stripe                    | P0 | |
+| US-10 | As a provider, I can view revenue and payout summaries                     | P0 | |
 | US-11 | As a provider, I can manage a waitlist and offer spots to waiting families | P0 | |
-| US-12 | As a provider, I can view my classes by coach/person | P1 | Coach View |
-| US-13 | As a provider, I can assign coaches to classes and manage coach profiles | P1 | |
-| US-14 | As a provider, I can edit my public business profile and upload photos | P0 | |
-| US-15 | As a provider, I can cancel a single session and notify enrolled parents | P1 | |
-| US-16 | As a provider, I can process a refund for a cancelled class | P1 | |
-| US-17 | As a provider, I can convert an enquiry into a booking | P1 | |
-| US-18 | As a provider, I can send a bulk message to all families in a class | P1 | |
-| US-19 | As a provider, I can use an AI assistant for guidance during onboarding | P1 | |
-| US-20 | As a provider, I can export my enrollment list to CSV | P1 | |
-| US-21 | As a provider, I can mark attendance for each class session | P2 | |
-| US-22 | As a provider, I can set a custom refund policy | P1 | |
+| US-12 | As a provider, I can view my classes by coach/person                       | P1 | Coach View |
+| US-13 | As a provider, I can assign coaches to classes and manage coach profiles   | P1 | |
+| US-14 | As a provider, I can edit my public business profile and upload photos     | P0 | |
+| US-15 | As a provider, I can cancel a single session and notify enrolled parents   | P1 | |
+| US-16 | As a provider, I can process a refund for a cancelled class                | P1 | |
+| US-17 | As a provider, I can convert an enquiry into a booking                     | P1 | |
+| US-18 | As a provider, I can send a bulk message to all families in a class        | P1 | |
+| US-19 | As a provider, I can use an AI assistant for guidance during onboarding    | P1 | |
+| US-20 | As a provider, I can export my enrollment list to CSV                      | P1 | |
+| US-21 | As a provider, I can set a custom refund policy                            | P1 | |
 
 ---
 
 ## 10. Integration Requirements
 
-| Integration | Purpose | Phase |
-|---|---|---|
-| **Stripe Connect** | Payment processing and direct payouts to providers | P0 |
-| **ABN Lookup API** (abr.business.gov.au) | Validate provider's ABN on registration | P0 |
-| **Google Maps / Places API** | Venue address autocomplete, map on public profile | P0 |
-| **SendGrid (or equivalent)** | Transactional email delivery | P0 |
-| **Google OAuth** | Provider sign-in with Google | P0 |
-| **Apple OAuth** | Provider sign-in with Apple | P1 |
-| **Gmail API** | Off-platform email reply capture for inbox passthrough | P1 |
-| **Microsoft Graph API (Outlook)** | Off-platform email reply capture for inbox passthrough | P1 |
-| **Vimeo / YouTube embed** | Provider intro video embed on public profile | P1 |
-| **Xero / MYOB** | Accounting export | P2 |
+| Integration                              | Purpose                                                | Phase |
+|------------------------------------------|--------------------------------------------------------|---|
+| **Stripe Connect**                       | Payment processing and direct payouts to providers     | P0 |
+| **ABN Lookup API** (abr.business.gov.au) | Validate provider's ABN on registration                | P0 |
+| **Google Maps / Places API**             | Venue address autocomplete, map on public profile      | P0 |
+| **SendGrid (or equivalent)**             | Transactional email delivery                           | P0 |
+| **Google OAuth**                         | Provider sign-in with Google                           | P0 |
+| **Apple OAuth**                          | Provider sign-in with Apple                            | P1 |
+| **Gmail API**                            | Off-platform email reply capture for inbox passthrough | P1 |
+| **Vimeo / YouTube embed**                | Provider intro video embed on public profile           | P1 |
+| **Roller and TBA**                       | Provider Booking Systems                               | P2 |
 
 ---
 
@@ -632,7 +632,7 @@ Message
 ## 13. Acceptance Criteria — Critical Flows
 
 ### AC-01: Onboarding
-- [ ] A new provider can complete all 5 steps in < 10 minutes on a desktop browser.
+- [ ] A new provider can complete all 5 steps in < 5 minutes on a desktop browser.
 - [ ] Stripe connection succeeds and returns the provider to the portal with a "Connected ✓" confirmation.
 - [ ] At least one class is visible on the parent-facing portal within 60 seconds of going live.
 - [ ] Provider receives a welcome email with their public profile URL.
@@ -674,22 +674,22 @@ Message
 
 ## 15. Glossary
 
-| Term | Definition |
-|---|---|
-| Provider | A business or individual offering kids' activities on KidStreet |
-| Parent | The adult user on the parent-facing portal who books activities for their child |
-| Class | A recurring or one-off activity offered by a provider |
-| Session | A single occurrence of a Class (e.g. one Saturday morning session) |
-| Enrollment | A confirmed booking linking a Child to a Class |
-| Waitlist | A queue of parents wishing to enroll when a class is full |
-| Stripe Connect | Stripe's product for marketplace/platform payment routing |
-| Platform Fee | KidStreet's charge per transaction (1.4% + $0.30, Starter Plan) |
-| Coach | A person assigned to deliver a class on behalf of a provider |
-| Enquiry | A pre-booking message from a parent expressing interest in a class |
-| Listing | A provider's public profile and class catalogue on the parent-facing portal |
-| ABN | Australian Business Number — required for all provider accounts |
-| WWCC | Working with Children Check — required documentation for providers |
-
+| Term           | Definition                                                                 |
+|----------------|----------------------------------------------------------------------------|
+| Provider       | A business or individual offering kids' activities on KidStreet            |
+| Parent         | The adult user on the parent-facing portal who books activities for their child |
+| Class          | A recurring or one-off activity offered by a provider                      |
+| Session        | A single occurrence of a Class (e.g. one Saturday morning session)         |
+| Enrollment     | A confirmed booking linking a Child to a Class                             |
+| Waitlist       | A queue of parents wishing to enroll when a class is full                  |
+| Stripe Connect | Stripe's product for marketplace/platform payment routing                  |
+| Platform Fee   | KidStreet's charge per transaction (1.4% + $0.30, Starter Plan)            |
+| Coach          | A person assigned to deliver a class on behalf of a provider               |
+| Enquiry        | A pre-booking message from a parent expressing interest in a class         |
+| Listing        | A provider's public profile and class catalogue on the parent-facing portal |
+| ABN            | Australian Business Number — required for all provider accounts            |
+| WWCC           | Working with Children Check — required documentation for providers         |
+| Donate Classes | Provider can choose to donate classes to the community                     |
 ---
 
 *End of Document — KidStreet Provider Portal BRD v1.0*
