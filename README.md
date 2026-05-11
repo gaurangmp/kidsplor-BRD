@@ -17,8 +17,7 @@
 
 ---
 
-### [Executive Summary](executive-summary)
-### [User Personas](user-personas)
+
 
 
 ## 1. [Executive Summary](#executive-summary)
