@@ -20,7 +20,7 @@
 
 ## 1. Executive Summary
 
-KidStreet (brand TBA) is a two-sided marketplace connecting parents with local kids' activity providers — sports academies, dance studios, music schools, arts workshops, tutoring centres, and more. This document defines Phase 1 requirements for the **Provider Portal**, the web application through which businesses create an account, set up their offering, manage classes, handle enrollments and payments, and communicate with parents.
+KidStreet (brand TBA) is a two-sided marketplace connecting parents with local kids' activity providers — sports academies, dance studios, music schools, arts workshops, tutoring centres, and more. This document defines Phase 1 requirements for the **Provider Portal**, the web application through which businesses create an account, set up their offering, manage classes, handle enrolments and payments, and communicate with parents.
 
 ### Design Principles
 
@@ -58,16 +58,19 @@ A staff member (e.g. receptionist or coordinator) who manages day-to-day operati
 ```
 Provider Portal (Web App)
 │
-├── Onboarding Wizard - Business Registration (5-step, < 5 min)
+├── Onboarding Wizard - Business Registration ( < 5 min)
 ├── Dashboard
-├── Class Schedule Manager
-├── Enrollments Manager
-├── Payments Tracker
+├── Venues
+├── Class & Offerings
+├── Bookings /Enrolments Manager
+├── Payments 
 ├── Inbox (Messaging)
 ├── Business Profile Editor
-├── Coach Manager
-└── Stripe / Payments Setup
+├── Payments Setup
 └── Analytics and Reporting
+└── Account: Plan and Billing
+└── Account: Settings
+
 ```
 
 The Provider Portal is a **responsive web application** (both desktop & mobile-responsive). The parent-facing portal (View - prototype) reads class data published by providers and exposes it as a public-facing class availability view.
@@ -99,8 +102,8 @@ The Provider Portal is a **responsive web application** (both desktop & mobile-r
 - The AI assistant pre-fills the business description if the provider pastes in a URL or selects their category.
 
 #### FR-01.4 — Step 3: Create First Class
-- Provider creates at least one class to proceed.
-- Fields: Class name, activity category, age group (dropdown), class capacity, price per session, block/term price (optional), day(s) of week, start time, duration, coach (assign from list or add new inline), venue / location, class description.
+- Provider has the option to create classes.
+- Fields: Class name, activity category, activity category type, age group (dropdown), class capacity, price per session, block/term price (optional), day(s) of week, start time, duration, coach (assign from list or add new inline), venue / location, class description.
 - Class type: Regular (recurring) or One-off (single session).
 - The system auto-generates a recurring schedule for the term based on the selected day(s) and a term-end date.
 
@@ -156,7 +159,7 @@ The following metrics are displayed as summary cards at the top of the dashboard
 
 ---
 
-### FR-03: Class Schedule Manager
+### FR-03: Bookings /Enrolments Manager
 
 **Priority:** P0
 
@@ -192,39 +195,35 @@ A modal or side panel with fields (same as FR-01.4). Additional fields available
 - Cancelling a single session triggers automatic notifications to enrolled parents (via in-app message and, if opted in, email).
 - Cancellation of a paid session triggers an automatic refund prompt (provider can choose: full refund, credit, or no refund per their policy).
 
-#### FR-03.5 — Coach View
-- Displays all coaches as rows with their class assignments for the week as pills.
-- Useful for scheduling and conflict detection.
-- System prevents assigning the same coach to two overlapping sessions (warning prompt, not hard block in Phase 1).
 
-#### FR-03.6 — Public Calendar Feed
+#### FR-03.5 — Public Calendar Feed
 - Each provider's published class schedule generates a read-only feed consumed by the parent-facing portal.
 - Feed exposes: class name, age group, day/time, venue, available spots, waitlist status, price, coach name.
 - This feed is the data source for the parent portal's class discovery and booking flows.
 
 ---
 
-### FR-04: Enrollments & Roster Management
+### FR-04: Enrolments
 
 **Priority:** P0
 
-#### FR-04.1 — Enrollment List
-- Filterable table of all enrollments across all classes.
+#### FR-04.1 — Enrolment List
+- Filterable table of all enrolments across all classes.
 - Filters: Class, Status (Confirmed / Pending / Waitlisted / Cancelled), Payment Status (Paid / Unpaid / Partial), Date range.
 - Search: by child name, parent name, or email.
-- Columns: Child name & age, Parent name, Class, Coach, Enrolled date, Payment status, Enrollment status, Actions.
+- Columns: Child name & age, Parent name, Class, Coach, Enrolled date, Payment status, enrolment status, Actions.
 
-#### FR-04.2 — Enrollment Actions
-Per enrollment row, the provider can:
+#### FR-04.2 — Enrolment Actions
+Per enrolment row, the provider can:
 - View child and parent details.
 - Move the child to a different class (triggers parent notification).
 - Mark as cancelled (triggers refund prompt and parent notification).
 - Send a direct message to the parent.
 - Chase payment (sends a payment reminder notification/email to the parent).
 
-#### FR-04.3 — Manual Enrollment
+#### FR-04.3 — Manual Enrolment
 - Provider can manually enroll a child (e.g. for cash/EFTPOS payments taken offline).
-- Manual enrollments are flagged as "Manually Added" and payment status can be set to "Paid Offline".
+- Manual enrolments are flagged as "Manually Added" and payment status can be set to "Paid Offline".
 
 #### FR-04.4 — Class Roster (per class)
 - Accessible from the Class Detail view.
@@ -240,7 +239,7 @@ Per enrollment row, the provider can:
 - Waitlisted families have 24 hours to accept before the offer is passed to the next person.
 
 #### FR-04.6 — Export
-- Providers can export the enrollment list or class roster to CSV.
+- Providers can export the enrolment list or class roster to CSV.
 
 ---
 
@@ -262,13 +261,13 @@ Per enrollment row, the provider can:
 #### FR-05.3 — KPI Summary (Payments Page)
 - This Month revenue (gross)
 - Total collected
-- Outstanding (unpaid enrollments)
+- Outstanding (unpaid enrolments)
 - Net paid out to provider's account (after platform fee)
 
 #### FR-05.4 — Payment Reminders
-- Provider can send a payment reminder to any parent with an unpaid or partial enrollment (one click).
+- Provider can send a payment reminder to any parent with an unpaid or partial enrolment (one click).
 - The reminder is sent as an in-app message and email.
-- Reminders can be sent manually or scheduled automatically (e.g. 48 hrs after enrollment if unpaid).
+- Reminders can be sent manually or scheduled automatically (e.g. 48 hrs after enrolment if unpaid).
 
 #### FR-05.5 — Refunds
 - Provider can initiate a full or partial refund from the Transaction list.
@@ -293,7 +292,7 @@ The inbox handles two distinct thread types:
 | Type | Trigger | Behaviour |
 |---|---|---|
 | **Enquiry** | A parent submits an enquiry from the provider's public profile (pre-booking) | New thread with tag "Enquiry". Provider can respond and convert the parent to a booking. |
-| **Booking Message** | A parent with an active enrollment sends a message (e.g. class move, catch-up, absence) | Thread tagged by topic (Schedule Change / Catch-up Request / Absence Note / General). |
+| **Booking Message** | A parent with an active enrolment sends a message (e.g. class move, catch-up, absence) | Thread tagged by topic (Schedule Change / Catch-up Request / Absence Note / General). |
 
 #### FR-06.2 — Inbox Layout
 - Split-pane: thread list on the left, active conversation on the right.
@@ -303,7 +302,7 @@ The inbox handles two distinct thread types:
 
 #### FR-06.3 — Conversation Actions
 From the chat header, provider can:
-- View the parent's enrollment details.
+- View the parent's enrolment details.
 - Offer a class swap (opens a class-picker modal, generates a structured "Class Swap Offer" message to the parent).
 - Mark conversation as resolved / archived.
 
@@ -324,7 +323,7 @@ From the chat header, provider can:
 - Bulk messages are also sent via email to all enrolled parents (cannot be disabled for class-wide notifications for safety/compliance reasons).
 
 #### FR-06.7 — Enquiry Conversion
-- From an Enquiry thread, the provider can click "Convert to Booking" which opens a pre-filled enrollment modal (class selector, child details) and sends the parent a direct booking link.
+- From an Enquiry thread, the provider can click "Convert to Booking" which opens a pre-filled enrolment modal (class selector, child details) and sends the parent a direct booking link.
 
 ---
 
@@ -354,16 +353,11 @@ From the chat header, provider can:
 | Public liability insurance | Yes | Checkbox + upload |
 | Cancellation / refund policy | Yes | Text or template |
 
-#### FR-07.2 — Profile Completeness Score
-- A % completeness indicator is shown on the Business Details page.
-- Completeness drives search ranking on the parent portal (higher completeness = higher default sort position).
-- Specific milestones unlock features (e.g. "Add a video to unlock Featured Provider badge").
-
-#### FR-07.3 — Listing Status Toggle
+#### FR-07.2 — Listing Status Toggle
 - A sidebar toggle switches the listing between Live (visible on parent portal) and Paused (hidden from search).
-- Pausing does not affect existing enrollments.
+- Pausing does not affect existing enrolments.
 
-#### FR-07.4 — Multiple Venues
+#### FR-07.3 — Multiple Venues
 - A provider can add multiple venues/locations, each with a name, full address, and optional URL (e.g. Google Maps link).
 - Each class is assigned to one venue.
 
@@ -381,8 +375,6 @@ From the chat header, provider can:
 - Each class is assigned to one primary coach.
 - The Coach View in the Schedule (FR-03.5) provides a per-coach weekly view.
 
-#### FR-08.3 — Coach Conflict Detection
-- The system warns (but does not hard-block) when a coach is assigned to two overlapping sessions.
 
 ---
 
@@ -437,7 +429,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 | Venue name + address | Provider input |
 | Coach name + photo | Coach profile |
 | Capacity | Provider input |
-| Available spots | Calculated (capacity minus confirmed enrollments) |
+| Available spots | Calculated (capacity minus confirmed enrolments) |
 | Waitlist status | Calculated (waitlist enabled + spots remaining = 0) |
 | Price (per session / term) | Provider input |
 | Class description | Provider input |
@@ -455,7 +447,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 | Ref    | Requirement                   | Target                                                              |
 |--------|-------------------------------|---------------------------------------------------------------------|
-| NFR-01 | Onboarding completion time    | ≤ 10 minutes for a new provider with no prior data                  |
+| NFR-01 | Onboarding completion time    | ≤ 5 minutes for a new provider with no prior data                  |
 | NFR-02 | Page load time                | < 2s for dashboard and schedule pages (p95)                         |
 | NFR-03 | Uptime                        | 99.5% monthly uptime SLA                                            |
 | NFR-04 | Responsive design             | Fully usable on desktop (primary), tablet (secondary)               |
@@ -467,7 +459,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 ---
 
-## 6. AI Assistant Requirements
+## 6. AI Assistant Requirements (Nice to Have)
 
 **Priority:** P1
 
@@ -484,7 +476,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 #### AI-03 — Operational Suggestions
 - After onboarding, the AI surfaces suggestions such as:
-  - "You have 3 unpaid enrollments — want me to send reminders to all of them?"
+  - "You have 3 unpaid enrolments — want me to send reminders to all of them?"
   - "Your Development U8 class is full — want to open a waitlist or add a second session?"
   - "You haven't replied to 2 enquiries in 24+ hours — respond now to improve your conversion rate."
 
@@ -503,7 +495,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 | New enquiry received | In-app + email | Provider |
 | New booking (parent pays) | In-app + email | Provider |
 | Class full / waitlist triggered | In-app | Provider |
-| Unpaid enrollment (24h reminder) | In-app + email | Provider |
+| Unpaid enrolment (24h reminder) | In-app + email | Provider |
 | Message from parent | In-app + email (if configured) | Provider |
 | Spot offered to waitlisted parent | In-app + email | Parent |
 | Booking confirmed | In-app + email | Parent |
@@ -535,9 +527,9 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 | Activity Category Type  | (examples)                       |
 |-------------------------|----------------------------------|
-| Donated /Paid /Trial /Free |                               |
+| Activity Charge      |   Donated /Paid /Trial /Free        |
 | Neuro-Diversity Support | Autism Friendly,Sensory Friendly |
-| Online/Offline          | Delivery Method                  |
+| Delivery Method         |        Online/Offline            |
 | Accessiblity            | Wheelchair, Hearing Loop         |
 
 ## 9. User Stories — Priority Matrix
@@ -548,7 +540,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 | US-02 | As a provider, I can create recurring weekly classes for a term            | P0 | |
 | US-03 | As a provider, I can see a weekly calendar view of all my classes          | P0 | |
 | US-04 | As a provider, I can view which kids are enrolled in each class            | P0 | |
-| US-05 | As a provider, I can see which enrollments are paid and which are not      | P0 | |
+| US-05 | As a provider, I can see which enrolments are paid and which are not      | P0 | |
 | US-06 | As a provider, I can send a payment reminder to an unpaid family           | P0 | |
 | US-07 | As a provider, I can receive and reply to messages from parents            | P0 | |
 | US-08 | As a provider, I can have parent messages forwarded to my email            | P0 | |
@@ -563,7 +555,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 | US-17 | As a provider, I can convert an enquiry into a booking                     | P1 | |
 | US-18 | As a provider, I can send a bulk message to all families in a class        | P1 | |
 | US-19 | As a provider, I can use an AI assistant for guidance during onboarding    | P1 | |
-| US-20 | As a provider, I can export my enrollment list to CSV                      | P1 | |
+| US-20 | As a provider, I can export my enrolment list to CSV                      | P1 | |
 | US-21 | As a provider, I can set a custom refund policy                            | P1 | |
 
 ---
@@ -580,7 +572,6 @@ This section describes what the Provider Portal publishes to the parent-facing s
 | **Apple OAuth**                          | Provider sign-in with Apple                            | P1 |
 | **Gmail API**                            | Off-platform email reply capture for inbox passthrough | P1 |
 | **Vimeo / YouTube embed**                | Provider intro video embed on public profile           | P1 |
-| **Roller and TBA**                       | Provider Booking Systems                               | P2 |
 
 ---
 
@@ -592,7 +583,7 @@ Phase 1 supports a single **Admin** role per provider account. Phase 2 will add 
 |---|---|
 | Edit business profile | Admin ✓ |
 | Create / edit classes | Admin ✓ |
-| View enrollments | Admin ✓ |
+| View enrolments | Admin ✓ |
 | Process refunds | Admin ✓ |
 | Send messages | Admin ✓ |
 | Connect Stripe | Admin ✓ |
@@ -613,7 +604,7 @@ Provider
 Class
  └── belongs to: Provider, Coach, Venue
  └── has many: Sessions (individual occurrences)
- └── has many: Enrollments
+ └── has many: enrolments
  └── has one: WaitlistQueue
  └── has many: Attributes
  
@@ -621,12 +612,12 @@ Session
  └── belongs to: Class
  └── has many: AttendanceRecords
 
-Enrollment
+enrolment
  └── belongs to: Class, Parent, Child
  └── has one: Payment
 
 Payment
- └── belongs to: Enrollment
+ └── belongs to: enrolment
  └── references: Stripe PaymentIntent / Charge
 
 InboxThread
@@ -654,13 +645,13 @@ Message
 - [ ] Class appears in the weekly calendar view with the correct day/time.
 - [ ] Class is visible on the parent portal within 60 seconds of publishing.
 
-### AC-03: Enrollment & Payment
-- [ ] A parent books and pays for a class; the enrollment appears in the provider's Enrollments list as "Confirmed / Paid" within 30 seconds.
+### AC-03: Enrolment & Payment
+- [ ] A parent books and pays for a class; the enrolment appears in the provider's enrolments list as "Confirmed / Paid" within 30 seconds.
 - [ ] The parent's payment is attributed to the correct class and provider in the Stripe dashboard.
 
 ### AC-04: Waitlist
 - [ ] When a class is full, the parent portal shows "Join Waitlist" instead of "Book Now".
-- [ ] When a provider cancels an enrollment, the first waitlisted parent receives a notification within 60 seconds.
+- [ ] When a provider cancels an enrolment, the first waitlisted parent receives a notification within 60 seconds.
 
 ### AC-05: Messaging
 - [ ] A parent sends a message; it appears in the provider's Inbox within 5 seconds.
@@ -692,7 +683,7 @@ Message
 | 02 | Parent | The adult user on the parent-facing portal who books activities for their child |
 | 03 | Class | A recurring or one-off activity offered by a provider |
 | 04 | Session | A single occurrence of a Class (e.g. one Saturday morning session) |
-| 05 | Enrollment | A confirmed booking linking a Child to a Class |
+| 05 | enrolment | A confirmed booking linking a Child to a Class |
 | 06 | Waitlist | A queue of parents wishing to enroll when a class is full |
 | 07 | Stripe Connect | Stripe's product for marketplace/platform payment routing |
 | 08 | Platform Fee | KidStreet's charge per transaction (1.4% + $0.30, Starter Plan) |
