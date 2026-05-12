@@ -188,7 +188,8 @@ A modal or side panel with fields (same as FR-01.4). Additional fields available
 - Visibility: Public (parents can find and book) / Private (invite-only, not listed on parent portal) / Enquire Only (no online payment; parent submits enquiry).
 - Cancellation/rescheduling policy (free-text or template).
 - Internal notes (not visible to parents).
-- Donate class feature (optional)
+- Donate class feature (optional).
+- Ability to share the class on Facebook and Instagram. (Widely used by current providers)
 
 #### FR-03.4 — Recurring Class Management
 - Provider can edit a single session or all future sessions in a recurring series.
