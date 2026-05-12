@@ -563,8 +563,8 @@ This section describes what the Provider Portal publishes to the parent-facing s
 
 ## 10. Integration Requirements
 
-| Integration                              | Purpose                                                | Phase |
-|------------------------------------------|--------------------------------------------------------|---|
+| Integration                              | Purpose                                                | Priority |
+|------------------------------------------|--------------------------------------------------------|----|
 | **Stripe Connect**                       | Payment processing and direct payouts to providers     | P0 |
 | **ABN Lookup API** (abr.business.gov.au) | Validate provider's ABN on registration                | P0 |
 | **Google Maps / Places API**             | Venue address autocomplete, map on public profile      | P0 |
@@ -572,6 +572,7 @@ This section describes what the Provider Portal publishes to the parent-facing s
 | **Google OAuth**                         | Provider sign-in with Google                           | P0 |
 | **Apple OAuth**                          | Provider sign-in with Apple                            | P1 |
 | **Gmail API**                            | Off-platform email reply capture for inbox passthrough | P1 |
+| **Facebook Graph API**                   | Provider to connect their social                       | P0 |
 | **Vimeo / YouTube embed**                | Provider intro video embed on public profile           | P1 |
 
 ---
