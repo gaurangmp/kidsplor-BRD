@@ -13,6 +13,7 @@
 | Version | 1.0 |
 | Author | KidStreet Product Team |
 | Status | Draft — For Developer Review |
+| Related Doc | [KidStreet Parent Portal BRD v1.0](https://gaurangmp.github.io/KidStreet-Parent-BRD/) |
 | Target Release | TBC |
 
 ---
